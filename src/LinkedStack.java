@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 /**
  * Yulong Tan
  * 3.31.15
- * <p>
+ *
  * LinkedList implementation of a Stack. The front is the 'top'.
  */
 
