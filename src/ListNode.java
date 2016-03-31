@@ -2,8 +2,8 @@
  * Created by Yulong on 3/31/2016.
  */
 public class ListNode<E> {
-    private E data;
-    private ListNode next;
+    public E data;
+    public ListNode next;
 
     public ListNode() {
         this(null);
