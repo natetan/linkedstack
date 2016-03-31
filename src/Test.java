@@ -9,8 +9,10 @@ public class Test {
         stack.push(3);
         stack.push(2);
         System.out.println("First iteration: " + stack.toString()); // 2 3 5
+        System.out.println("Size: " + stack.size());
         int x = stack.pop();
         System.out.println("Removed top: " + stack.toString()); // 3 5
         System.out.println("Removed: " + x);
+        System.out.println("Size: " + stack.size());
     }
 }
