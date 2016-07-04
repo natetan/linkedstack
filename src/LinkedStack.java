@@ -9,11 +9,11 @@ import java.util.NoSuchElementException;
 
 public class LinkedStack<E> {
     private StackNode front;
-    private int count;
+    private int size;
 
     public LinkedStack() {
         this.front = null;
-        this.count = 0;
+        this.size = 0;
     }
 
     public boolean isEmpty() {
@@ -33,17 +33,17 @@ public class LinkedStack<E> {
         }
         E data = (E) this.front.data;
         this.front = this.front.next;
-        this.count--;
+        this.size--;
         return data;
     }
 
     public void push(E e) {
         this.front = new StackNode(e, this.front);
-        this.count++;
+        this.size++;
     }
 
     public int size() {
-        return this.count;
+        return this.size;
     }
 
 
