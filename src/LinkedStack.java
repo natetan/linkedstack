@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  */
 
 public class LinkedStack<E> {
-    private ListNode front;
+    private StackNode front;
     private int count;
 
     public LinkedStack() {
@@ -16,9 +16,15 @@ public class LinkedStack<E> {
         this.count = 0;
     }
 
-    public void push(E e) {
-        this.front = new ListNode(e, this.front);
-        this.count++;
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
+
+    public E peek() {
+        if (this.front == null) {
+            throw new NoSuchElementException();
+        }
+        return (E) this.front.data;
     }
 
     public E pop() {
@@ -31,27 +37,22 @@ public class LinkedStack<E> {
         return data;
     }
 
-    public E peek() {
-        if (this.front == null) {
-            throw new NoSuchElementException();
-        }
-        return (E) this.front.data;
+    public void push(E e) {
+        this.front = new StackNode(e, this.front);
+        this.count++;
     }
 
     public int size() {
         return this.count;
     }
 
-    public boolean isEmpty() {
-        return this.size() == 0;
-    }
 
     public String toString() {
         if (this.front == null) {
             return "[]";
         } else {
             String result = "[" + this.front.data;
-            ListNode current = this.front.next;
+            StackNode current = this.front.next;
             while (current != null) {
                 result += ", " + current.data;
                 current = current.next;
