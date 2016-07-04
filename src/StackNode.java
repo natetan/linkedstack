@@ -1,19 +1,19 @@
 /**
  * Created by Yulong on 3/31/2016.
  */
-public class ListNode<E> {
+public class StackNode<E> {
     public E data;
-    public ListNode next;
+    public StackNode next;
 
-    public ListNode() {
+    public StackNode() {
         this(null);
     }
 
-    public ListNode(E e) {
+    public StackNode(E e) {
         this(e, null);
     }
 
-    public ListNode(E e, ListNode next) {
+    public StackNode(E e, StackNode next) {
         this.data = e;
         this.next = next;
     }
