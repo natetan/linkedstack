@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 /**
  * Yulong Tan
  * 3.31.15
- *
+ * <p>
  * LinkedList implementation of a Stack. The front is the 'top'.
  */
 
@@ -133,7 +133,7 @@ public class LinkedStack<E> implements Iterable<E> {
     // Size is decreased.
     public E remove(int index) {
         if (index >= this.size) {
-            throw new IndexOutOfBoundsException("Index: "+ index);
+            throw new IndexOutOfBoundsException("Index: " + index);
         }
         E data;
         this.size--;
