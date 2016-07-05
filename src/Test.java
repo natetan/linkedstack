@@ -14,5 +14,15 @@ public class Test {
         System.out.println("Removed top: " + stack.toString()); // 3 5
         System.out.println("Removed: " + x);
         System.out.println("Size: " + stack.size());
+
+        // Sort
+
+        stack.push(5);
+        stack.push(1);
+        stack.push(8);
+        stack.push(6);
+        System.out.println("Stack: " + stack.toString());
+        stack.sort();
+        System.out.println("Sorted stack: " + stack.toString());
     }
 }
