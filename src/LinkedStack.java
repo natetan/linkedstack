@@ -95,7 +95,14 @@ public class LinkedStack<E> implements Iterable<E> {
         if (this.front == null) {
             throw new NoSuchElementException();
         }
-        return (E) this.front.data;
+        return this.peek(0);
+    }
+
+    public E peek(int index) {
+        if (index >= this.size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+        return (E) this.nodeAt(index).data;
     }
 
     // Returns and removes the element at the top of the stack.
@@ -155,6 +162,40 @@ public class LinkedStack<E> implements Iterable<E> {
     // Returns the size of the stack
     public int size() {
         return this.size;
+    }
+
+    public void sort() {
+        if (this.size > 1) {
+            int size1 = this.size / 2;
+            int size2 = this.size - size1;
+            LinkedStack half1 = new LinkedStack();
+            LinkedStack half2 = new LinkedStack();
+            for (int i = 0; i < size1; i++) {
+                half1.push(this.remove(this.size() - 1));
+            }
+            for (int i = 0; i < size2; i++) {
+                half2.push(this.remove(this.size() - 1));
+            }
+            half1.sort();
+            half2.sort();
+            this.mergeSort(this, half1, half2);
+        }
+    }
+
+    private void mergeSort(LinkedStack result, LinkedStack half1, LinkedStack half2) {
+        while (!half1.isEmpty() && !half2.isEmpty()) {
+            if (((Comparable) half1.peek()).compareTo(half2.peek()) <= 0) {
+                result.push(half1.pop());
+            } else {
+                result.push(half2.pop());
+            }
+        }
+        while (!half1.isEmpty()) {
+            result.push(half1.pop());
+        }
+        while (!half2.isEmpty()) {
+            result.push(half2.pop());
+        }
     }
 
     // Returns a string representation of the stack.
