@@ -187,8 +187,20 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Reverses the stack
     public void reverse() {
-        
+        if (this.top != null && this.top.next != null) {
+            StackNode current = this.top;
+            StackNode prev = null;
+            StackNode next = null;
+            while (current != null) {
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+            this.top = prev;
+        }
     }
 
     // Returns the size of the stack
