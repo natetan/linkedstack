@@ -63,6 +63,17 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    private void append(E e) {
+        if (this.isEmpty()) {
+            this.top = new StackNode(e);
+            this.bottom = this.top;
+        } else {
+            this.bottom.next = new StackNode(e);
+            this.bottom = this.bottom.next;
+        }
+        this.size++;
+    }
+
     // Returns true if the stack is empty and false otherwise
     public boolean isEmpty() {
         return this.size() == 0;
@@ -176,11 +187,16 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    public void reverse() {
+        
+    }
+
     // Returns the size of the stack
     public int size() {
         return this.size;
     }
 
+    // Sorts the stack from the top to the bottom
     public void sort() {
         if (this.size > 1) {
             int size1 = this.size / 2;
@@ -188,10 +204,10 @@ public class LinkedStack<E> implements Iterable<E> {
             LinkedStack half1 = new LinkedStack();
             LinkedStack half2 = new LinkedStack();
             for (int i = 0; i < size1; i++) {
-                half1.push(this.pop());
+                half1.append(this.pop());
             }
             for (int i = 0; i < size2; i++) {
-                half2.push(this.pop());
+                half2.append(this.pop());
             }
             half1.sort();
             half2.sort();
@@ -199,19 +215,20 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Performs the merge sort algorithm
     private void mergeSort(LinkedStack result, LinkedStack half1, LinkedStack half2) {
         while (!half1.isEmpty() && !half2.isEmpty()) {
             if (((Comparable) half1.peek()).compareTo(half2.peek()) <= 0) {
-                result.push(half1.pop());
+                result.append(half1.pop());
             } else {
-                result.push(half2.pop());
+                result.append(half2.pop());
             }
         }
         while (!half1.isEmpty()) {
-            result.push(half1.pop());
+            result.append(half1.pop());
         }
         while (!half2.isEmpty()) {
-            result.push(half2.pop());
+            result.append(half2.pop());
         }
     }
 
