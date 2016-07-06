@@ -25,7 +25,13 @@ public class Test {
         stack.push(8);
         stack.push(6);
         System.out.println("Stack: " + stack.toString());
+        System.out.println("Size: " + stack.size());
         stack.sort();
         System.out.println("Sorted stack: " + stack.toString());
+        System.out.println("Size: " + stack.size());
+
+        // Reverse
+        stack.reverse();
+        System.out.println("Reversed stack: " + stack.toString());
     }
 }
