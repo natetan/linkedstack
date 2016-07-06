@@ -1,5 +1,4 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * Yulong Tan
@@ -80,8 +79,38 @@ public class LinkedStack<E> implements Iterable<E> {
         return this.size() == 0;
     }
 
+    // Returns true if the stack is sorted (from top to bottom)
+    public boolean isSorted() {
+        if (this.isEmpty() || this.size == 1) {
+            return true;
+        } else {
+            StackNode current = this.top;
+            while (current.next != null) {
+                if (((Comparable) current.data).compareTo(current.next.data) > 0) {
+                    return false;
+                }
+                current = current.next;
+            }
+            return true;
+        }
+    }
+
+    // Returns true if the stack contains no duplicates and false otherwise
     public boolean isUnique() {
-        
+        if (this.isEmpty() && this.size == 1) {
+            return true;
+        } else {
+            Set<E> uniques = new HashSet<E>();
+            for (int i = 0; i < this.size; i++) {
+                E data = (E) this.nodeAt(i).data;
+                if (uniques.contains(data)) {
+                    return false;
+                } else {
+                    uniques.add(data);
+                }
+            }
+            return true;
+        }
     }
 
     // Returns an iterator over the stack
@@ -194,6 +223,24 @@ public class LinkedStack<E> implements Iterable<E> {
             current.next = current.next.next;
             return data;
         }
+    }
+
+    // Removes all duplicates from stack and returns the duplicates as a set.
+    // Returns an empty set if there are no duplicates
+    public Set<E> removeDuplicates() {
+        Set<E> dupes = new TreeSet<>();
+        if (this.size > 1) {
+            for (int i = 0; i < this.size; i++) {
+                E data = (E) this.nodeAt(i).data;
+                if (dupes.contains(data)) {
+                    this.remove(i);
+                    i--;
+                } else {
+                    dupes.add(data);
+                }
+            }
+        }
+        return dupes;
     }
 
     // Reverses the stack
