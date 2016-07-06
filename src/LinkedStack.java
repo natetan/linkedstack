@@ -5,16 +5,18 @@ import java.util.NoSuchElementException;
  * Yulong Tan
  * 3.31.15
  * <p>
- * LinkedList implementation of a Stack. The front is the 'top'.
+ * LinkedList implementation of a Stack. Last in, first out structure (LIFO)
  */
 
 public class LinkedStack<E> implements Iterable<E> {
-    private StackNode front; // reference to the front
-    private int size;        // size of stack
+    private StackNode top;    // reference to the top
+    private StackNode bottom; // reference to the bottom
+    private int size;         // size of stack
 
     // Constructs an empty LinkedStack
     public LinkedStack() {
-        this.front = null;
+        this.top = null;
+        this.bottom = this.top;
         this.size = 0;
     }
 
@@ -78,9 +80,9 @@ public class LinkedStack<E> implements Iterable<E> {
             throw new IndexOutOfBoundsException("Index: " + index);
         }
         if (index == 0) {
-            return this.front;
+            return this.top;
         } else {
-            StackNode current = this.front;
+            StackNode current = this.top;
             for (int i = 0; i < index; i++) {
                 current = current.next;
             }
@@ -92,7 +94,7 @@ public class LinkedStack<E> implements Iterable<E> {
     // Throws a NoSuchElementException if stack is empty
     // Size is decreased.
     public E peek() {
-        if (this.front == null) {
+        if (this.top == null) {
             throw new NoSuchElementException();
         }
         return this.peek(0);
@@ -109,11 +111,11 @@ public class LinkedStack<E> implements Iterable<E> {
     // Throws a NoSuchElementException if stack is empty.
     // Size is decreased.
     public E pop() {
-        if (this.front == null) {
+        if (this.top == null) {
             throw new NoSuchElementException();
         }
-        E data = (E) this.front.data;
-        this.front = this.front.next;
+        E data = (E) this.top.data;
+        this.top = this.top.next;
         this.size--;
         return data;
     }
@@ -121,7 +123,13 @@ public class LinkedStack<E> implements Iterable<E> {
     // Puts the given element to the top of the stack.
     // Size is increased
     public void push(E e) {
-        this.front = new StackNode(e, this.front);
+        if (this.isEmpty()) {
+            this.top = new StackNode(e);
+            this.bottom = this.top;
+        } else {
+            // t[5]b
+            this.top = new StackNode(e, this.top);
+        }
         this.size++;
     }
 
@@ -145,11 +153,20 @@ public class LinkedStack<E> implements Iterable<E> {
         E data;
         this.size--;
         if (index == 0) {
-            data = (E) this.front.data;
-            this.front = this.front.next;
+            data = (E) this.top.data;
+            this.top = this.top.next;
+            return data;
+        } else if (index == this.size - 1) {
+            StackNode current = this.top;
+            for (int i = 0; i < this.size - 2; i++) {
+                current = current.next;
+            }
+            data = (E) current.next.data;
+            current.next = null;
+            this.bottom = current;
             return data;
         } else {
-            StackNode current = this.front;
+            StackNode current = this.top;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
@@ -171,10 +188,10 @@ public class LinkedStack<E> implements Iterable<E> {
             LinkedStack half1 = new LinkedStack();
             LinkedStack half2 = new LinkedStack();
             for (int i = 0; i < size1; i++) {
-                half1.push(this.remove(this.size() - 1));
+                half1.push(this.pop());
             }
             for (int i = 0; i < size2; i++) {
-                half2.push(this.remove(this.size() - 1));
+                half2.push(this.pop());
             }
             half1.sort();
             half2.sort();
@@ -202,11 +219,11 @@ public class LinkedStack<E> implements Iterable<E> {
     // Elements are inside square brackets, separated by commas.
     // 'Top' and 'bottom' of the stack are marked
     public String toString() {
-        if (this.front == null) {
+        if (this.top == null) {
             return "[]";
         } else {
-            String result = "t[" + this.front.data;
-            StackNode current = this.front.next;
+            String result = "t[" + this.top.data;
+            StackNode current = this.top.next;
             while (current != null) {
                 result += ", " + current.data;
                 current = current.next;
