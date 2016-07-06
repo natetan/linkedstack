@@ -63,10 +63,11 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Adds given element to the bottom of the stack. If stack is empty, it creates
+    // a node at the top. Size is increased
     private void append(E e) {
         if (this.isEmpty()) {
-            this.top = new StackNode(e);
-            this.bottom = this.top;
+            this.makeFirstNode(e);
         } else {
             this.bottom.next = new StackNode(e);
             this.bottom = this.bottom.next;
@@ -79,9 +80,19 @@ public class LinkedStack<E> implements Iterable<E> {
         return this.size() == 0;
     }
 
+    public boolean isUnique() {
+        
+    }
+
     // Returns an iterator over the stack
     public Iterator iterator() {
         return new LinkedStackIterator(this);
+    }
+
+    // Creates the first node if stack is empty
+    private void makeFirstNode(E e) {
+        this.top = new StackNode(e);
+        this.bottom = this.top;
     }
 
     // Returns the node at the given index. Throws
@@ -135,10 +146,8 @@ public class LinkedStack<E> implements Iterable<E> {
     // Size is increased
     public void push(E e) {
         if (this.isEmpty()) {
-            this.top = new StackNode(e);
-            this.bottom = this.top;
+            this.makeFirstNode(e);
         } else {
-            // t[5]b
             this.top = new StackNode(e, this.top);
         }
         this.size++;
