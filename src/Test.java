@@ -25,13 +25,23 @@ public class Test {
         stack.push(8);
         stack.push(6);
         System.out.println("Stack: " + stack.toString());
+        System.out.println("Sorted: " + stack.isSorted()); // false
         System.out.println("Size: " + stack.size());
         stack.sort();
         System.out.println("Sorted stack: " + stack.toString());
+        System.out.println("Sorted: " + stack.isSorted()); // true
         System.out.println("Size: " + stack.size());
 
         // Reverse
         stack.reverse();
         System.out.println("Reversed stack: " + stack.toString());
+
+        // Unique
+        stack.push(5);
+        System.out.println("Stack: " + stack.toString());
+        System.out.println("Unique: " + stack.isUnique()); // false
+        stack.pop();
+        System.out.println("Stack: " + stack.toString());
+        System.out.println("Unique: " + stack.isUnique()); // true
     }
 }
