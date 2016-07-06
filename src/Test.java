@@ -13,6 +13,9 @@ public class Test {
         int x = stack.pop();
         System.out.println("Removed top: " + stack.toString()); // 3 5
         System.out.println("Removed: " + x);
+        int y = stack.remove(stack.size() - 1); // 5
+        System.out.println("Removed last element: " + stack.toString()); // 3
+        System.out.println("Removed: " + y);
         System.out.println("Size: " + stack.size());
 
         // Sort
