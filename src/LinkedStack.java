@@ -3,7 +3,8 @@ import java.util.*;
 /**
  * Yulong Tan
  * 3.31.15
- * <p>
+ *
+ *
  * LinkedList implementation of a Stack. Last in, first out structure (LIFO)
  */
 
@@ -72,6 +73,39 @@ public class LinkedStack<E> implements Iterable<E> {
             this.bottom = this.bottom.next;
         }
         this.size++;
+    }
+
+    // Returns true if this LinkedStack is equal to the given LinkedStack
+    // and false otherwise.
+    public boolean equals(LinkedStack other) {
+        if (this.size != other.size) {
+            return false;
+        } else {
+            StackNode current1 = this.top;
+            StackNode current2 = other.top;
+            while (current1 != null) {
+                if (!current1.data.equals(current2.data)) {
+                    return false;
+                }
+                current1 = current1.next;
+                current2 = current2.next;
+            }
+            return true;
+        }
+    }
+
+    public E getBottom() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return (E) this.bottom.data;
+    }
+
+    public E getTop() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return (E) this.top.data;
     }
 
     // Returns true if the stack is empty and false otherwise
@@ -256,6 +290,13 @@ public class LinkedStack<E> implements Iterable<E> {
                 current = next;
             }
             this.top = prev;
+
+            // Set the bottom after reversal
+            StackNode position = this.top;
+            for (int i = 0; i < this.size - 1; i++) {
+                position = position.next;
+            }
+            this.bottom = position;
         }
     }
 
