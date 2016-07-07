@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created by Yulong on 3/31/2016.
  */
@@ -61,5 +63,12 @@ public class Test {
         System.out.println("Stack: " + stack.toString());
         System.out.println("Stack2: " + s2.toString());
         System.out.println("Equals: " + stack.equals(s2)); // true
+
+        // toArray
+        System.out.println("Stack: " + stack.toString());
+        List<Integer> list = stack.toArray();
+        System.out.println("List: t" + list.toString() + "b");
+        System.out.println("Stack after: " + stack.toString());
+
     }
 }
