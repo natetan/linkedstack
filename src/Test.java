@@ -46,5 +46,20 @@ public class Test {
 
         System.out.println("Top: " + stack.getTop());       // 8
         System.out.println("Bottom: " + stack.getBottom()); // 1
+
+        // Equals
+        LinkedStack<Integer> s2 = new LinkedStack<>();
+        int position = 0;
+        for (int i : stack) {
+            s2.push((Integer)stack.nodeAt(position).data);
+            position++;
+        }
+        System.out.println("Stack: " + stack.toString());
+        System.out.println("Stack2: " + s2.toString());
+        System.out.println("Equals: " + stack.equals(s2)); // false
+        s2.reverse();
+        System.out.println("Stack: " + stack.toString());
+        System.out.println("Stack2: " + s2.toString());
+        System.out.println("Equals: " + stack.equals(s2)); // true
     }
 }
