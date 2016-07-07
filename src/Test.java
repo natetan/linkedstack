@@ -43,5 +43,8 @@ public class Test {
         stack.pop();
         System.out.println("Stack: " + stack.toString());
         System.out.println("Unique: " + stack.isUnique()); // true
+
+        System.out.println("Top: " + stack.getTop());       // 8
+        System.out.println("Bottom: " + stack.getBottom()); // 1
     }
 }
