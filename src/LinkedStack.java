@@ -341,6 +341,15 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Returns an ArrayList with the stack's elements in order of top to bottom
+    public List<E> toArray() {
+        List<E> list = new ArrayList<>();
+        for (int i = 0; i < this.size; i++) {
+            list.add((E) this.nodeAt(i).data);
+        }
+        return list;
+    }
+
     // Returns a string representation of the stack.
     // Elements are inside square brackets, separated by commas.
     // 'Top' and 'bottom' of the stack are marked
