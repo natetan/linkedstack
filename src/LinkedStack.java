@@ -94,7 +94,10 @@ public class LinkedStack<E> implements Iterable<E> {
         this.size++;
     }
 
-    
+    public void clear() {
+        this.top = null;
+        this.size = 0;
+    }
 
     // Returns true if the stack contains the given element and false otherwise
     public boolean contains(E e) {
