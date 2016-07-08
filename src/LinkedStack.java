@@ -75,6 +75,22 @@ public class LinkedStack<E> implements Iterable<E> {
         this.size++;
     }
 
+    // Returns true if the stack contains the given element and false otherwise
+    public boolean contains(E e) {
+        if (this.isEmpty()) {
+            return false;
+        } else {
+            StackNode current = this.top;
+            while (current != null) {
+                if (current.data.equals(e)) {
+                    return true;
+                }
+                current = current.next;
+            }
+            return false;
+        }
+    }
+
     // Returns true if this LinkedStack is equal to the given LinkedStack
     // and false otherwise.
     public boolean equals(LinkedStack other) {
@@ -94,6 +110,8 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Returns the element at the bottom of the stack
+    // Throws a NoSuchElementException if the stack is empty
     public E getBottom() {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
@@ -101,11 +119,37 @@ public class LinkedStack<E> implements Iterable<E> {
         return (E) this.bottom.data;
     }
 
+    // Returns the element at the top of the stack
+    // Throws a NoSuchElementException if the stack is empty
     public E getTop() {
         if (this.isEmpty()) {
             throw new NoSuchElementException();
         }
         return (E) this.top.data;
+    }
+
+    // Returns the index of the first occurrence of the given data
+    // Returns -1 if given data is not in the stack
+    public int indexOf(E e) {
+        if (!this.contains(e)) {
+            return -1;
+        } else {
+            int index = 0;
+            if (this.top.data.equals(e)) {
+                return 0;
+            } else {
+                StackNode current = this.top.next;
+                while (current != null) {
+                    index++;
+                    if (current.data.equals(e)) {
+                        current = null; // stops early
+                    } else {
+                        current = current.next;
+                    }
+                }
+                return index;
+            }
+        }
     }
 
     // Returns true if the stack is empty and false otherwise
