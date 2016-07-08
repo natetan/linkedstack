@@ -368,12 +368,22 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Shuffles the stack only if the size is > 1
     public void shuffle() {
         if (this.size > 1) {
             Random r = new Random();
             LinkedStack<E> storage = new LinkedStack<>();
             storage.addAll(this);
-
+            this.clear();
+            int rand = r.nextInt(storage.size() - 1);
+            this.append((E) storage.nodeAt(rand).data);
+            storage.remove(rand);
+            while (storage.size > 1) {
+                int random = r.nextInt(storage.size() - 1);
+                this.append((E) storage.nodeAt(random).data);
+                storage.remove(random);
+            }
+            this.append((E) storage.pop());
         }
     }
 
