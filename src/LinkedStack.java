@@ -63,6 +63,25 @@ public class LinkedStack<E> implements Iterable<E> {
         }
     }
 
+    // Adds all the contents from the other LinkedStack to this one. Appends to the bottom
+    public void addAll(LinkedStack other) {
+        this.addAll(other, false);
+    }
+
+    // Adds the contents from the other LinkedStack to this one,
+    // and sorts it if the boolean passed in is true
+    public void addAll(LinkedStack other, boolean sorted) {
+        int size = other.size();
+        for (int i = 0; i < size; i++) {
+            E next = (E) other.pop();
+            this.append(next);
+            other.append(next);
+        }
+        if (sorted) {
+            this.sort();
+        }
+    }
+
     // Adds given element to the bottom of the stack. If stack is empty, it creates
     // a node at the top. Size is increased
     private void append(E e) {
@@ -74,6 +93,8 @@ public class LinkedStack<E> implements Iterable<E> {
         }
         this.size++;
     }
+
+    
 
     // Returns true if the stack contains the given element and false otherwise
     public boolean contains(E e) {
@@ -341,6 +362,15 @@ public class LinkedStack<E> implements Iterable<E> {
                 position = position.next;
             }
             this.bottom = position;
+        }
+    }
+
+    public void shuffle() {
+        if (this.size > 1) {
+            Random r = new Random();
+            LinkedStack<E> storage = new LinkedStack<>();
+            storage.addAll(this);
+
         }
     }
 
