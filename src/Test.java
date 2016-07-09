@@ -96,9 +96,13 @@ public class Test {
         // Shuffle test
         System.out.println("Testing shuffle");
         System.out.println("Stack: " + stack.toString());
+        System.out.println("Top: " + stack.getTop());
+        System.out.println("Bottom: " + stack.getBottom());
         System.out.println("Size: " + stack.size());
         stack.shuffle();
         System.out.println("Shuffled stack: " + stack.toString());
+        System.out.println("Top: " + stack.getTop());
+        System.out.println("Bottom: " + stack.getBottom());
         System.out.println("Size: " + stack.size());
 
     }
