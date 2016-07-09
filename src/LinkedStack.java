@@ -306,16 +306,14 @@ public class LinkedStack<E> implements Iterable<E> {
         if (index == 0) {
             data = (E) this.top.data;
             this.top = this.top.next;
-            return data;
         } else if (index == this.size - 1) {
             StackNode current = this.top;
             for (int i = 0; i < this.size - 2; i++) {
                 current = current.next;
             }
             data = (E) current.next.data;
-            current.next = null;
+            current.next = current.next.next;
             this.bottom = current;
-            return data;
         } else {
             StackNode current = this.top;
             for (int i = 0; i < index - 1; i++) {
@@ -323,8 +321,8 @@ public class LinkedStack<E> implements Iterable<E> {
             }
             data = (E) current.next.data;
             current.next = current.next.next;
-            return data;
         }
+        return data;
     }
 
     // Removes all duplicates from stack and returns the duplicates as a set.
@@ -375,11 +373,11 @@ public class LinkedStack<E> implements Iterable<E> {
             LinkedStack<E> storage = new LinkedStack<>();
             storage.addAll(this);
             this.clear();
-            int rand = r.nextInt(storage.size() - 1);
+            int rand = r.nextInt(storage.size());
             this.append((E) storage.nodeAt(rand).data);
             storage.remove(rand);
             while (storage.size > 1) {
-                int random = r.nextInt(storage.size() - 1);
+                int random = r.nextInt(storage.size());
                 this.append((E) storage.nodeAt(random).data);
                 storage.remove(random);
             }
