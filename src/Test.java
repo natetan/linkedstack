@@ -93,5 +93,13 @@ public class Test {
         System.out.println("Index of 2: " + stack.indexOf(2));  // -1
         System.out.println("Index of 1: " + stack.indexOf(1));  // 4
 
+        // Shuffle test
+        System.out.println("Testing shuffle");
+        System.out.println("Stack: " + stack.toString());
+        System.out.println("Size: " + stack.size());
+        stack.shuffle();
+        System.out.println("Shuffled stack: " + stack.toString());
+        System.out.println("Size: " + stack.size());
+
     }
 }
