@@ -346,6 +346,7 @@ public class LinkedStack<E> implements Iterable<E> {
     // Reverses the stack
     public void reverse() {
         if (this.top != null && this.top.next != null) {
+            this.bottom = this.top;
             StackNode current = this.top;
             StackNode prev = null;
             StackNode next = null;
@@ -356,13 +357,6 @@ public class LinkedStack<E> implements Iterable<E> {
                 current = next;
             }
             this.top = prev;
-
-            // Set the bottom after reversal
-            StackNode position = this.top;
-            for (int i = 0; i < this.size - 1; i++) {
-                position = position.next;
-            }
-            this.bottom = position;
         }
     }
 
