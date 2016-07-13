@@ -92,6 +92,7 @@ public class Test {
         System.out.println("Contains 2: " + stack.contains(2)); // false
         System.out.println("Index of 2: " + stack.indexOf(2));  // -1
         System.out.println("Index of 1: " + stack.indexOf(1));  // 4
+        System.out.println();
 
         // Shuffle test
         System.out.println("Testing shuffle");
@@ -104,6 +105,19 @@ public class Test {
         System.out.println("Top: " + stack.getTop());
         System.out.println("Bottom: " + stack.getBottom());
         System.out.println("Size: " + stack.size());
+        System.out.println();
 
+        // Testing removeAll
+        System.out.println("Testing removeAll");
+        for (int i = 0; i < 5; i++) {
+            stack.append(9);
+        }
+        stack.push(9);
+        System.out.println("Stack: " + stack.toString());
+        int removal = 9;
+        stack.removeAll(removal);
+        System.out.println("Removing all instances of " + removal);
+        System.out.println("Stack: " + stack.toString());
+        System.out.println();
     }
 }
