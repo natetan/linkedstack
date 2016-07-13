@@ -323,6 +323,25 @@ public class LinkedStack<E> implements Iterable<E> {
         return data;
     }
 
+    // Removes all instances of the given data from the stack.
+    public void removeAll(E data) {
+        if (!this.isEmpty()) {
+            StackNode current = this.top;
+            while (current.next != null) {
+                if (current.next.data.equals(data)) {
+                    current = current.next;
+                    this.size--;
+                } else {
+                    current = current.next;
+                }
+            }
+            if (this.top.data.equals(data)) {
+                this.top = this.top.next;
+                this.size--;
+            }
+        }
+    }
+
     // Removes all duplicates from stack and returns the duplicates as a set.
     // Returns an empty set if there are no duplicates
     public Set<E> removeDuplicates() {
