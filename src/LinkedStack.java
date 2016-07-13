@@ -82,7 +82,7 @@ public class LinkedStack<E> implements Iterable<E> {
 
     // Adds given element to the bottom of the stack. If stack is empty, it creates
     // a node at the top. Size is increased
-    private void append(E e) {
+    public void append(E e) {
         if (this.isEmpty()) {
             this.makeFirstNode(e);
         } else {
@@ -329,7 +329,7 @@ public class LinkedStack<E> implements Iterable<E> {
             StackNode current = this.top;
             while (current.next != null) {
                 if (current.next.data.equals(data)) {
-                    current = current.next;
+                    current.next = current.next.next;
                     this.size--;
                 } else {
                     current = current.next;
