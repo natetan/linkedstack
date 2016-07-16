@@ -109,14 +109,16 @@ public class Test {
 
         // Testing removeAll
         System.out.println("Testing removeAll");
+        int testNum = 9;
         for (int i = 0; i < 5; i++) {
-            stack.append(9);
+            stack.append(testNum);
         }
-        stack.push(9);
+        stack.push(testNum);
         System.out.println("Stack: " + stack.toString());
-        int removal = 9;
-        stack.removeAll(removal);
-        System.out.println("Removing all instances of " + removal);
+        System.out.println("Top: " + stack.getTop());
+        System.out.println("Bottom: " + stack.getBottom());
+        stack.removeAll(testNum);
+        System.out.println("Removing all instances of " + testNum);
         System.out.println("Stack: " + stack.toString());
         System.out.println("Top: " + stack.getTop());
         System.out.println("Bottom: " + stack.getBottom());
