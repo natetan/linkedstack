@@ -118,6 +118,8 @@ public class Test {
         stack.removeAll(removal);
         System.out.println("Removing all instances of " + removal);
         System.out.println("Stack: " + stack.toString());
+        System.out.println("Top: " + stack.getTop());
+        System.out.println("Bottom: " + stack.getBottom());
         System.out.println();
     }
 }
