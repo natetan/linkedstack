@@ -340,6 +340,11 @@ public class LinkedStack<E> implements Iterable<E> {
                 this.size--;
             }
         }
+        StackNode position = this.top;
+        while (position.next != null) {
+            position = position.next;
+        }
+        this.bottom = position;
     }
 
     // Removes all duplicates from stack and returns the duplicates as a set.
